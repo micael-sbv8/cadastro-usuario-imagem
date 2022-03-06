@@ -1,7 +1,20 @@
+using CadastroLogin.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
+
+var stringConexao = builder.Configuration.GetConnectionString("CadastroLoginContext");
+builder.Services.AddDbContext<CadastroContext>(options =>
+options.UseMySql(stringConexao, ServerVersion.AutoDetect(stringConexao)));
+
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+
+
+
+
 
 var app = builder.Build();
 
